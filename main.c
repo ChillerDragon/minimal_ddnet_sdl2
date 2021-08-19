@@ -29,7 +29,11 @@ int Init(int *Screen)
 		printf("[gfx] unable to get desktop resolution: %s\n", SDL_GetError());
 		return 1;
 	}
-	int SdlFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_FULLSCREEN;
+	int SdlFlags = SDL_WINDOW_OPENGL | \
+		       SDL_WINDOW_INPUT_GRABBED | \
+		       SDL_WINDOW_INPUT_FOCUS | \
+		       SDL_WINDOW_MOUSE_FOCUS | \
+		       SDL_WINDOW_FULLSCREEN;
 	g_window = SDL_CreateWindow(
 		"SDL2",
 		SDL_WINDOWPOS_CENTERED,
