@@ -5,8 +5,6 @@
 
 #include <SDL2/SDL.h>
 
-#include "example.hpp"
-
 void sdl_fail(std::string desc) {
 	std::string msg = desc + ": " + SDL_GetError();
 	std::cerr << msg << std::endl;
@@ -27,12 +25,10 @@ class SDL_Started {
 };
 
 int main(int argc, char* argv[]) {
-	std::vector<std::string> args(argv, argv+argc);
-	
 	SDL_Started started;
 	
 	auto window = std::shared_ptr<SDL_Window>
-		(SDL_CreateWindow(args[0].c_str(),
+		(SDL_CreateWindow("minimal SDL2",
 		                  SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		                  640, 480,
 		                  0),
@@ -49,20 +45,15 @@ int main(int argc, char* argv[]) {
 	if(renderer == nullptr) {
 		sdl_fail("SDL_CreateRenderer failed");
 	}
-	
 	SDL_SetRenderDrawColor(renderer.get(),
 	                       0x10,
 	                       0xb0,
 	                       0x10,
 	                       SDL_ALPHA_OPAQUE);
 	
-	// Fill whole window.
 	SDL_RenderFillRect(renderer.get(),
 	                   NULL);
-	
-	// Apply rendering.
 	SDL_RenderPresent(renderer.get());
-	
 	SDL_Event event;
 	while (SDL_WaitEvent(&event) >= 0) {
 		switch (event.type) {
@@ -72,8 +63,6 @@ int main(int argc, char* argv[]) {
 			default: break;
 		}
 	}
-	
-	
 	return 0;
 }
 

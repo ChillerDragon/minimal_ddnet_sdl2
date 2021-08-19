@@ -1,5 +1,5 @@
 
-all: example
+all: main
 
 include $(wildcard *.d)
 #include $(wildcard lib/*.d)
@@ -10,6 +10,6 @@ CXXFLAGS := -std=c++11 \
             --write-dependencies
 CXXLDFLAGS := -lSDL2
 
-#%: %.cpp $(wildcard lib/*.cpp) Makefile
-%: %.cpp Makefile
-	$(ECHO)$(CXX) $(CXXFLAGS) $(filter %.cpp, $^) $(CXXLDFLAGS) -o $@
+main: main.cpp Makefile
+	$(ECHO)$(CXX) $(CXXFLAGS) main.cpp $(CXXLDFLAGS) -o main
+
